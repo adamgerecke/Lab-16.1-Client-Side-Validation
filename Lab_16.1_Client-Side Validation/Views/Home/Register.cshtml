@@ -1,0 +1,128 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <style>
+        .redtextcolor
+        {
+            color:orangered;
+        }
+
+    </style>
+    <script>
+
+
+        function submitForm() {
+            let first = document.getElementById('FirstNameElement');
+            let last = document.getElementById('LastNameElement');
+            let email = document.getElementById('EmailElement');
+            let password = document.getElementById('PasswordElement');
+            let passwordConfirm = document.getElementById('PasswordConfirmElement');
+
+            var RegPass = (/^(?=.*[0-9])(?=.*[!#$%^&*])[a-zA-Z0-9!#$%^&*]{6,16}$/);
+            var RegEmail = /\S+\S+\.\S+/;
+
+
+            let firstContinue = false;
+            let lastContinue = false;
+            let emailContinue = false;
+            let passContinue = false;
+            let passConfirmContinue = false;
+
+            if (first.value.length < 2) {  //FIRSTNAME
+                //alert('First Name not long enough');
+
+                document.getElementById("invalidFirstName").style.visibility = "visible";
+                return false;
+            }
+            else {
+                firstContinue = true;
+            }
+
+            if (last.value.length < 2) { //LASTNAME
+                document.getElementById("invalidLastName").style.visibility = "visible";
+                return false;
+            }
+            else {
+                lastContinue = true;
+            }
+
+            if (!RegEmail.test(email.value)) {
+                document.getElementById("invalidEmail").style.visibility = "visible";
+                return false;
+            }
+            else {
+                emailContinue = true;
+            }
+
+            if (!RegPass.test(password.value)) {
+                document.getElementById("invalidPassword").style.visibility = "visible";
+                return false;
+            }
+            else {
+                passContinue = true;
+            }
+
+
+            if (password.value != passwordConfirm.value) { //Confirm Password Matches
+                document.getElementById("invalidPassConfirm").style.visibility = "visible";
+                return false;
+            }
+            else {
+                passConfirmContinue = true;
+            }
+
+            if (firstContinue == true && lastContinue == true && passContinue == true && emai == true && passConfirmContinue == true) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
+    </script>
+    <body>
+        <div>
+            <h2>Please Register:</h2><br /><br />
+        </div>
+
+        <div>
+            <form method="Post" action="/home/result" onsubmit="return submitForm()">
+
+                <label for=FirstName style="display:block"> <b>First Name:</b></label>
+                <div id="invalidFirstName" style="visibility:hidden" class="redtextcolor">First Name must be 2 characters of longer.</div>
+                <input type="text" name="FirstName" id="FirstNameElement" /><br /><br />
+
+                <label for=LastName style="display:block"> <b>Last Name:</b></label>
+                <div id="invalidLastName" style="visibility:hidden" class="redtextcolor">Last Name must be 2 characters of longer.</div>
+                <input type="text" name="LastName" id="LastNameElement" /><br /><br />
+
+                <label for=Email style="display:block"> <b>Email Address:</b></label>
+                <div id="invalidEmail" style="visibility:hidden" class="redtextcolor">Not a valid Email Address.</div>
+                <input type="email" name="Email" id="EmailElement" /><br /><br />
+
+                <label for=Password style="display:block"> <b>Password:</b></label>
+                <div id="invalidPassword" style="visibility:hidden" class="redtextcolor">Not a valid Password. <b>**6-16 characters in total. 1 Uppercase 1 Lowercase 1 Number 1 Symbol Required**</b>.</div>
+                <input type="password" name="Password" id="PasswordElement" /><br /><br />
+
+                <label for=PasswordConfirm style="display:block"> <b>Confirm Password:</b></label>
+                <div id="invalidPassConfirm" style="visibility:hidden" class="redtextcolor">Passwords must match.</div>
+                <input type="password" name="PasswordConfirm" id="PasswordConfirmElement" /><br /><br />
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        
+
+
+    </body>
+</head>
+
+</html>
