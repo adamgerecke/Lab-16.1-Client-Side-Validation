@@ -25,7 +25,7 @@
             let password = document.getElementById('PasswordElement');
             let passwordConfirm = document.getElementById('PasswordConfirmElement');
 
-            var RegPass = (/^(?=.*[0-9])(?=.*[!#$%^&*])[a-zA-Z0-9!#$%^&*]{6,16}$/);
+            var RegPass = (/^(?=.*[0-9])(?=.*[!@@#$%^&*])[a-zA-Z0-9!#$%^&*]{6,16}$/);
             var RegEmail = /\S+\S+\.\S+/;
 
 
@@ -78,12 +78,8 @@
                 passConfirmContinue = true;
             }
 
-            if (firstContinue == true && lastContinue == true && passContinue == true && emai == true && passConfirmContinue == true) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return (firstContinue == true && lastContinue == true && passContinue == true && emai == true && passConfirmContinue == true) 
+            
 
         }
 
